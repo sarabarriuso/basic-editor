@@ -1,0 +1,16 @@
+.shape {
+  height: 50px;
+  width: 50px;
+  background-color: $grey;
+  border: 3px solid $primary-yellow;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &--selected {
+    background-color: $primary-yellow;
+    border: 3px solid $grey;
+  }
+  &:focus {
+    box-shadow: 5px 1px 1px $black;
+  }
+}

@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  box-shadow: 0 2px 8px 0 $grey;
+  flex-wrap: wrap;
+  background-color: black;
+
+  & > .header__title {
+    color: $white;
+  }
+}

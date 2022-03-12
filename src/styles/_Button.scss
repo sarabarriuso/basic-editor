@@ -1,0 +1,34 @@
+@import 'mixins';
+
+.button {
+  @include active-button;
+  margin: auto 0.5rem;
+  &.button--secondary {
+    background-color: transparent;
+    border: solid $mercury 3px;
+  }
+
+  &.button--tertiary {
+    background-color: transparent;
+    border: none;
+    color: $dark-grey;
+    &:hover {
+      background-color: transparentize($dark-grey, 0.9);
+    }
+  }
+
+  & .button__left-icon {
+    margin-right: 0.5rem;
+  }
+
+  & .button__right-icon {
+    margin-left: 0rem;
+  }
+
+  &:disabled {
+    background: none;
+    border: solid $mercury 3px;
+    color: $black;
+    cursor: not-allowed;
+  }
+}
