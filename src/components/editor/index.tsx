@@ -1,36 +1,86 @@
-import React from 'react';
-import EditorActions from './EditorActions';
+import React, { useReducer } from 'react';
 
-// import t from '../../language';
-import Shape from './shapes/ShapeWrapper';
+import EditorActions from './EditorActions';
+import ShapeWrapper from './shapes/ShapeWrapper';
+
+let nodeIndex = 0;
+
+interface IShape {
+  id: number;
+}
+
+const initialShapesState = {
+  totalShapes: 0,
+  shapes: [],
+};
+
+const shapesReducer = (
+  prevState: { shapes: IShape[]; totalShapes: number },
+  action: { type: string; payload: { id: number } },
+) => {
+  switch (action.type) {
+    case 'ADD_SHAPE': {
+      const newState = {
+        shapes: [...prevState.shapes, action.payload],
+        totalShapes: prevState.shapes.length + 1,
+      };
+      return newState;
+    }
+
+    case 'DELETE_SHAPE': {
+      const newState = {
+        ...prevState,
+        shapes: prevState.shapes.filter(
+          (shape: IShape) => shape.id !== action.payload.id,
+        ),
+        totalShapes: prevState.shapes.length - 1,
+      };
+      return newState;
+    }
+
+    default:
+      return prevState;
+  }
+};
 
 const Editor: React.FC = () => {
   const DEFAULT_CLASSNAME = 'editor';
 
-  // const onDragOver = React.useCallback((e) => {
-  //   // eslint-disable-next-line no-console
-  //   console.log('it dropped!' + e);
-  // }, []);
+  const [shapeSelectedId, setShapeSelectedId] = React.useState<number>();
+  const [shapesState, dispatch] = useReducer(shapesReducer, initialShapesState);
 
-  // const onDragStart = React.useCallback((e) => {
-  //   // eslint-disable-next-line no-console
-  //   console.log('it started dragging!' + e);
-  // }, []);
+  const createShapeCallback = () => {
+    dispatch({ type: 'ADD_SHAPE', payload: { id: nodeIndex } });
+    nodeIndex++;
+  };
 
-  const createNodeCallback = () => {
-    // eslint-disable-next-line no-console
-    console.log('create mre!');
+  const deleteShapeCallback = () => {
+    if (shapeSelectedId !== undefined) {
+      dispatch({ type: 'DELETE_SHAPE', payload: { id: shapeSelectedId } });
+      setShapeSelectedId(undefined);
+    }
+  };
+
+  const handleShapeClick = (index: number): void => {
+    setShapeSelectedId(index);
   };
 
   return (
     <div className={DEFAULT_CLASSNAME}>
       <EditorActions
-        createNodeCallback={createNodeCallback}
-        shapeToDelete={false}
+        createShapeCallback={createShapeCallback}
+        removeShapeCallback={deleteShapeCallback}
+        shapeToDelete={shapeSelectedId !== undefined}
       />
-
-      <Shape />
-      <Shape />
+      <div className={`${DEFAULT_CLASSNAME}__playground`}>
+        {shapesState.shapes.map((shape) => (
+          <ShapeWrapper
+            key={shape.id}
+            onPointerDown={() => handleShapeClick(shape.id)}
+            isSelected={shape.id === shapeSelectedId}
+          />
+        ))}
+      </div>
     </div>
   );
 };

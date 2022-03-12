@@ -4,17 +4,11 @@ exports[`Header Tests Renders successfully 1`] = `
 <div
   className="header"
 >
-  <ForwardRef(SvgEcologiLogo)
-    className="header__logo"
-  />
   <h1
     className="header__title"
   >
-    🌳
-    Tree Planting Statistics
+    📏
+    A very basic design editor
   </h1>
-  <div
-    className="header__background"
-  />
 </div>
 `;

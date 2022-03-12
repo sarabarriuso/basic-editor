@@ -3,8 +3,9 @@
 .button {
   @include active-button;
   margin: auto 0.5rem;
+
   &.button--secondary {
-    background-color: transparent;
+    background-color: $mercury;
     border: solid $mercury 3px;
   }
 
@@ -30,5 +31,6 @@
     border: solid $mercury 3px;
     color: $black;
     cursor: not-allowed;
+    box-shadow: none;
   }
 }

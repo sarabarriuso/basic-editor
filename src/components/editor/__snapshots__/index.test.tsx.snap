@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Editor Tests Editor renders successfully 1`] = `
+<div
+  className="editor"
+>
+  <EditorActions
+    createShapeCallback={[Function]}
+    removeShapeCallback={[Function]}
+    shapeToDelete={false}
+  />
+  <div
+    className="editor__playground"
+  />
+</div>
+`;
+
+exports[`Editor Tests Triggering createShapeCallback creates a new shape 1`] = `
+<div
+  className="editor"
+>
+  <EditorActions
+    createShapeCallback={[Function]}
+    removeShapeCallback={[Function]}
+    shapeToDelete={false}
+  />
+  <div
+    className="editor__playground"
+  >
+    <ShapeWrapper
+      isSelected={false}
+      key="0"
+      onPointerDown={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`Editor Tests Triggering deleteShapeCallback after selecting a shape deletes it 1`] = `
+<div
+  className="editor"
+>
+  <EditorActions
+    createShapeCallback={[Function]}
+    removeShapeCallback={[Function]}
+    shapeToDelete={false}
+  />
+  <div
+    className="editor__playground"
+  />
+</div>
+`;

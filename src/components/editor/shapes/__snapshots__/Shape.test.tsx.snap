@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Shape Tests Shape renders successfully 1`] = `
+<div
+  className="shape"
+  onPointerDown={[Function]}
+  onPointerMove={[Function]}
+  onPointerUp={[Function]}
+  style={
+    Object {
+      "width": 0,
+    }
+  }
+/>
+`;
+
+exports[`Shape Tests Shape will contain selected css modifier when selected 1`] = `
+<div
+  className="shape shape--selected"
+  onPointerDown={[Function]}
+  onPointerMove={[Function]}
+  onPointerUp={[Function]}
+  style={
+    Object {
+      "width": 0,
+    }
+  }
+/>
+`;

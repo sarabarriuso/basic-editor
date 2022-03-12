@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import Dashboard from './Dashboard';
 
 export default describe('Dashboard Tests', () => {
-  it('Renders successfully when is not loading tree data', () => {
+  it('Renders successfully', () => {
     // Arrange
     // Act
     const tree = shallow(<Dashboard />);

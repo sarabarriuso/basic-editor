@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditorActions Tests Editor actions renders successfully 1`] = `
+<div
+  className="editor-actions"
+>
+  <Button
+    onClick={[Function]}
+    text="Add node"
+  />
+  <Button
+    disabled={true}
+    onClick={[Function]}
+    text="Remove node"
+    variant="Secondary"
+  />
+</div>
+`;

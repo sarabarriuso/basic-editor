@@ -1,16 +1,20 @@
 .shape {
   height: 50px;
   width: 50px;
-  background-color: $grey;
-  border: 3px solid $primary-yellow;
+  position: absolute;
+  right: calc(50% - 25px);
+  background-color: $dark-grey;
   border-radius: 8px;
+  margin: auto;
   cursor: pointer;
+  // This avoids movement on the shapes when one is selected due to the size difference, to review for a better solution
+  border: 3px solid transparent;
 
   &--selected {
-    background-color: $primary-yellow;
-    border: 3px solid $grey;
+    border: 3px solid $primary-yellow;
+    z-index: 2;
   }
   &:focus {
-    box-shadow: 5px 1px 1px $black;
+    box-shadow: 15px 1px 1px $black;
   }
 }

@@ -3,7 +3,15 @@ import React, { useState } from 'react';
 // import t from '../../language';
 import Shape from './Shape';
 
-const ShapeWrapper: React.FC = () => {
+interface IShapeWrapperProps {
+  onPointerDown: () => void;
+  isSelected: boolean;
+}
+
+const ShapeWrapper: React.FC<IShapeWrapperProps> = ({
+  onPointerDown,
+  isSelected,
+}) => {
   const DEFAULT_CLASSNAME = 'shape-wrapper';
   const [position, setPosition] = useState({
     x: 0,
@@ -24,34 +32,31 @@ const ShapeWrapper: React.FC = () => {
   //   console.log('it was dropped' + e);
   // }, []);
 
-  const handleDragMove = (e: any) => {
-    // eslint-disable-next-line no-console
-    console.log(position.x + e.movementX);
-    setPosition({
-      x: position.x + e.movementX,
-      y: position.y + e.movementY,
-    });
+  const handleDragMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const newXPosition = position.x + e.movementX;
+    const newYPosition = position.y + e.movementY;
+    if (
+      newXPosition > -470 &&
+      newXPosition < 475 &&
+      newYPosition > 0 &&
+      newYPosition < 544
+    ) {
+      setPosition({
+        x: position.x + e.movementX,
+        y: position.y + e.movementY,
+      });
+    }
   };
 
   return (
-    <div className={DEFAULT_CLASSNAME}>
+    <div className={DEFAULT_CLASSNAME} style={{ height: 0 }}>
       <Shape
-        onPointerDown={function (): void {
-          // eslint-disable-next-line no-console
-          console.log('this si spointer down');
-        }}
-        onPointerUp={function (): void {
-          // eslint-disable-next-line no-console
-          console.log('this si spointer up');
-        }}
-        // I don't think I need this one
-        onPointerMove={() => {
-          return;
-        }}
+        onPointerDown={() => onPointerDown()}
         onDragMove={handleDragMove}
         styleTransform={{
           transform: `translateX(${position.x}px) translateY(${position.y}px)`,
         }}
+        isSelected={isSelected}
       />
     </div>
   );

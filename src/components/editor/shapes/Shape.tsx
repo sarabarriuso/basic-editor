@@ -2,49 +2,38 @@ import classnames from 'classnames';
 import React, { useState } from 'react';
 
 interface IDraggableShapeProps {
-  onPointerDown: (e: any) => void;
-  onPointerUp: (e: any) => void;
-  onPointerMove: (e: any) => void;
-  onDragMove: (e: any) => void;
-  //children: ReactNode;
+  onPointerDown: (e: React.PointerEvent<HTMLDivElement>) => void;
+  onDragMove: (e: React.PointerEvent<HTMLDivElement>) => void;
   styleTransform: React.CSSProperties;
+  isSelected: boolean;
 }
 
 const Shape: React.FC<IDraggableShapeProps> = ({
   onPointerDown,
-  onPointerUp,
-  onPointerMove,
   onDragMove,
-  //children,
   styleTransform,
+  isSelected,
 }) => {
   const DEFAULT_CLASSNAME = 'shape';
 
   const [isDragging, setIsDragging] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
 
   const classname: string = classnames(DEFAULT_CLASSNAME, {
     [`${DEFAULT_CLASSNAME}--selected`]: isSelected === true,
   });
 
-  const handlePointerDown = (e: any) => {
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     setIsDragging(true);
-    setIsSelected(true);
 
     onPointerDown(e);
   };
 
-  const handlePointerUp = (e: any) => {
+  const handlePointerUp = () => {
     setIsDragging(false);
-    setIsSelected(false);
-
-    onPointerUp(e);
   };
 
-  const handlePointerMove = (e: any) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (isDragging) onDragMove(e);
-
-    onPointerMove(e);
   };
 
   return (
@@ -54,9 +43,7 @@ const Shape: React.FC<IDraggableShapeProps> = ({
       onPointerUp={handlePointerUp}
       onPointerMove={handlePointerMove}
       style={styleTransform}
-    >
-      {/* //{children} */}
-    </div>
+    />
   );
 };
 

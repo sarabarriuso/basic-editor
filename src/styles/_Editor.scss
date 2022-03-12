@@ -1,4 +1,15 @@
 .editor {
-  margin: 3rem;
+  margin: 2rem;
   position: relative;
+
+  & > .editor__playground {
+    width: 1000px;
+    height: 600px;
+    //border: 1px solid $grey;
+    margin: auto;
+    border-radius: 5px;
+    //background-color: $mercury;
+    background-size: 20px 20px;
+    background-image: radial-gradient(circle, $grey 1px, $mercury 1px);
+  }
 }

@@ -1,21 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dashboard Tests Renders successfully when is loading tree data 1`] = `
+exports[`Dashboard Tests Renders successfully 1`] = `
 <div
   className="dashboard"
 >
   <Header />
-  <Spinner
-    caption="Counting trees..."
-  />
-</div>
-`;
-
-exports[`Dashboard Tests Renders successfully when is not loading tree data 1`] = `
-<div
-  className="dashboard"
->
-  <Header />
-  <TreeChart />
+  <Editor />
 </div>
 `;
