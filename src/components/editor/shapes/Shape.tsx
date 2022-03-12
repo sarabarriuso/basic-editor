@@ -22,9 +22,10 @@ const Shape: React.FC<IDraggableShapeProps> = ({
     [`${DEFAULT_CLASSNAME}--selected`]: isSelected === true,
   });
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handlePointerDown = (e: any) => {
     setIsDragging(true);
-
+    e.target.setPointerCapture(e.pointerId);
     onPointerDown(e);
   };
 
